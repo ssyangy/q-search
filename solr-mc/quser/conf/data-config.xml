@@ -1,0 +1,10 @@
+<dataConfig>
+<dataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://192.168.1.100/q" user="admin" password="admin1234" />
+  <document name="quser">
+    <entity name="people" query="select id,username,real_name from people where '${dataimporter.request.clean}' = 'true' or modified > '${dataimporter.last_index_time}'">
+      <field column="id" name="id" />
+      <field column="username" name="name" />
+      <field column="real_name" name="name" />
+    </entity>
+  </document>
+</dataConfig>

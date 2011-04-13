@@ -1,0 +1,9 @@
+<dataConfig>
+<dataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://192.168.1.100/q" user="admin" password="admin1234" />
+  <document name="qweibo">
+    <entity name="weibo" query="SELECT id,content FROM weibo WHERE ('${dataimporter.request.clean}' = 'true' OR modified > '${dataimporter.last_index_time}') AND id >= 1000000000000000">
+      <field column="id" name="id" />
+      <field column="content" name="qcontent" />
+    </entity>
+  </document>
+</dataConfig>

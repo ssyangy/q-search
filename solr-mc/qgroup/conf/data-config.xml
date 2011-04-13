@@ -1,0 +1,10 @@
+<dataConfig>
+<dataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://192.168.1.100/q" user="admin" password="admin1234" />
+  <document name="qgroup">
+    <entity name="group" query="select id,name,intro from `group` where '${dataimporter.request.clean}' = 'true' or modified > '${dataimporter.last_index_time}'">
+      <field column="id" name="id" />
+      <field column="name" name="groupname" />
+      <field column="intro" name="intro" />
+    </entity>
+  </document>
+</dataConfig>
