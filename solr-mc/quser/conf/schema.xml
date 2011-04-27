@@ -19,12 +19,13 @@
 <schema name="quser core" version="1.0">
   <types>
     <fieldtype name="string"  class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
+    <fieldtype name="slong"  class="solr.SortableLongField" sortMissingLast="true" omitNorms="true"/>
     <fieldType name="text_complex" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="complex" dicPath="../dict"/>
       </analyzer>
     </fieldType>
-    <fieldType name="text_ch" class="solr.TextField" positionIncrementGap="100">
+    <fieldType name="text_maxword" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="max-word" dicPath="../dict"/>
       </analyzer>
@@ -37,8 +38,8 @@
   </types>
   <fields>
     <!-- general -->
-    <field name="id"       type="string"    indexed="true"  stored="true"  multiValued="false" required="true"/>
-    <field name="name" type="text_ch" indexed="true" stored="true" multiValued="true"/>
+    <field name="id"       type="slong"    indexed="true"  stored="true"  multiValued="false" required="true"/>
+    <field name="name" type="text_maxword" indexed="true" stored="true" multiValued="true"/>
     <!--
     <field name="type"     type="string"    indexed="true"  stored="true"  multiValued="false" /> 
     <field name="name"     type="string"    indexed="true"  stored="true"  multiValued="false" /> 

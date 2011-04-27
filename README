@@ -1,0 +1,29 @@
+q-search
+====================
+Solr search engine for q
+
+Version
+====================
+v0.1 First version, indexing on weibo, people and group. With mmseg4j.
+
+Server Configuration
+====================
+put deploy/solr.xml to tomcat conf folder, under Catalina/localhost. Substitute /YourPathTo/q-search/solr-mc in solr.xml with the actual path to solr-mc
+
+Installation and deployment
+====================
+1) copy deploy/deploy.sed to your own folder. Change the content according to your database settings. This file will be used each time you deploy q-search
+2) cd to parent folder of q-search
+3) command:
+	q-search/deploy/dabao.sh /PathToYour/deply.sed
+4) transfer your tar to server and extract and overwrite the old q-search folder
+
+Usage
+====================
+Here we only take weibo as example. Similiar usage for other cores, just use quser or qgroup instead of qweibo.
+1)Full index rebuild
+http://localhost:8080/solr/qweibo/dataimport?command=full-import&clean=true
+2)Delta data import
+http://localhost:8080/solr/qweibo/dataimport?command=full-import&clean=false
+3)Range query on id
+http://localhost:8080/solr/qweibo/select?q=*:* AND id:[0 TO 99999]

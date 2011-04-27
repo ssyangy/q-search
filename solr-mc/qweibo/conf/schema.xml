@@ -19,7 +19,7 @@
 <schema name="qweibo core" version="1.0">
   <types>
     <fieldtype name="string"  class="solr.StrField" sortMissingLast="true" omitNorms="true"/>
-    <fieldtype name="long"  class="solr.LongField" sortMissingLast="true" omitNorms="true"/>
+    <fieldtype name="slong"  class="solr.SortableLongField" sortMissingLast="true" omitNorms="true"/>
     <fieldType name="mm_complex" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <tokenizer class="com.chenlb.mmseg4j.solr.MMSegTokenizerFactory" mode="complex" dicPath="../dict"/>
@@ -38,7 +38,7 @@
   </types>
   <fields>
     <!-- general -->
-    <field name="id"       type="long"    indexed="true"  stored="true"  multiValued="false" required="true"/>
+    <field name="id"       type="slong"    indexed="true"  stored="true"  multiValued="false" required="true"/>
     <!--
     <field name="type"     type="string"    indexed="true"  stored="true"  multiValued="false" /> 
     <field name="name"     type="string"    indexed="true"  stored="true"  multiValued="false" /> 

@@ -1,9 +1,24 @@
 <dataConfig>
+<script><![CDATA[
+function atFilter(row) {
+	var text = row.get('content');
+	var arr = new java.util.ArrayList();
+	var reg = /@[^\s]+/g;
+	var result = reg.exec(text);
+	while(result) {
+		arr.add(result[0]);
+		result=reg.exec(text);
+	}
+	row.put('related',arr);
+	return row;
+}
+]]></script>
 <dataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://192.168.1.100/q" user="admin" password="admin1234" />
   <document name="qweibo">
-    <entity name="weibo" query="SELECT id,content FROM weibo WHERE ('${dataimporter.request.clean}' = 'true' OR modified > '${dataimporter.last_index_time}') AND id >= 1000000000000000">
+    <entity name="weibo" pk="id" transformer="script:atFilter" query="SELECT id,content FROM weibo WHERE ('${dataimporter.request.clean}' = 'true' OR modified > '${dataimporter.last_index_time}')">
       <field column="id" name="id" />
       <field column="content" name="qcontent" />
+      <field column="related" name="qrelated" />
     </entity>
   </document>
 </dataConfig>
